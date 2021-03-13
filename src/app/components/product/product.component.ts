@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/products';
 
 @Component({
-  selector: 'app-product',    //! Componenti html tag'i olarak çağırıkan kullanacağımız isim.
-  templateUrl: './product.component.html',  //! Component'e karşılık gelen html sayfasının url'i.
+  selector: 'app-product',                //! Componenti html tag'i olarak çağırıkan kullanacağımız isim.
+  templateUrl: './product.component.html',//! Component'e karşılık gelen html sayfasının url'i.
   styleUrls: ['./product.component.css']  //! Component'in sahip olduğu css sayfası
 })
 

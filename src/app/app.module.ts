@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
 import { CategoryComponent } from './components/category/category.component';
 import { NaviComponent } from './components/navi/navi.component';
-import { TodoComponent } from './components/todo/todo.component';
 
 @NgModule({
   declarations: [ //! Bir modulün componentleri kullanabilmesi için o componentlerin declerations'da tanımlı olması ve import edilmiş olması lazım. Bizim tarafımızdan projeye eklenmiş olan olan componentler declarations'a otomatik olarak eklenir. Eklenmez ise, eklememiz gerekir.
@@ -14,7 +13,6 @@ import { TodoComponent } from './components/todo/todo.component';
     ProductComponent,
     CategoryComponent,
     NaviComponent,
-    TodoComponent
   ],
   imports: [ //! Dışarıdan, bizim yazmadığımız, başka modulleri uygulamamız içerisinde kullanıyorsak o modulleri imports'a ekliyoruz.
     BrowserModule,

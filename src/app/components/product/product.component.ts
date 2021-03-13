@@ -19,7 +19,7 @@ export class ProductComponent implements OnInit { //OnInit : ngOnInit(): metodun
   constructor(private productService:ProductService) { } 
   
   //! ngOnInit : Component ilk kez açıldığında/çağırıldığında çalışan metodumuzdur.
-  //* this -> bir fonksiyonun dışındaki bir şeye ulaşmak istediğinde typescripte this yazıyoruz.
+  //* this -> bir fonksiyonun dışındaki bir şeye ulaşmak istendiğinde typescriptte this kullanılıyor.
   ngOnInit(): void {
     this.getProducts();
   }

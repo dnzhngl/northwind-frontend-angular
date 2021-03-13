@@ -1,33 +1,25 @@
-<!--Angular'ın devreye girmesi için iç içe süslü parantez yazılır ortasına alan adı girilir. {{alan adı}}.-->
-<!-- Welcome to {{title}}
-Hello {{user}}
-{{product.productName}}
-<ul >
-  <li *ngFor="let product of products">{{product.productName}}</li> -->
-<!-- *ngFor => built-in directive :  ilgili HTML elementini manipule etmemize yarıyor. 
-    ngFor şuan bulunduğun alanı tekrarla demek. Açılış ve kapanış parantezleri li taglerini kapsar. yani içerisine yazıldığı html tagini kapsar.
-    Bu componentteki array durumundaki products in içerisindeki her bir product için döner. 
-    ngFor = forEach
-    var = let
-</ul> -->
+<!--! Root sayfasının içereceği compoonentler buradan ayarlanır-->
 
-<!--! Ana sayfanın görünüüşünü buradan ayarladık-->
+ <!--Index.html deki body tagları arasında bulunabilecek olan tüm componentları içerisinde tutacak olan bir container div.-->
 <div class="container">
-
   <!--Component tree-->
+
+  <!--NavBar-->
   <app-navi></app-navi>
 
   <div class="row">
-
     <div class="col-md-3">
+      <!--CategoryComponent-->
       <app-category></app-category>
     </div>
 
     <div class="col-md-9">
+      <!--ProductComponent-->
       <app-product></app-product>
     </div>
     <!-- <app-todo></app-todo> -->
   </div>
 
+  <!--! router-outlet : urldeki adrese bakar, oradaki route neyse gidip app-routing.module.ts içerisinde tanımlı olan Routes arrayını gezer. Path'i route denk gelen component'in htmlini bulunduğu yere koyar.-->
   <router-outlet></router-outlet>
 </div>

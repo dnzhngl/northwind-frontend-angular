@@ -1,23 +1,25 @@
 import { ProductService } from './../../services/product.service';
-import { ProductResponseModel } from './../../models/productResponseModel';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/products';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css']
+  selector: 'app-product',    //! Componenti html tag'i olarak çağırıkan kullanacağımız isim.
+  templateUrl: './product.component.html',  //! Component'e karşılık gelen html sayfasının url'i.
+  styleUrls: ['./product.component.css']  //! Component'in sahip olduğu css sayfası
 })
+
 export class ProductComponent implements OnInit { //OnInit : ngOnInit(): metodunu getirir.
 
-  products:Product[] = []; // Array
-  dataLoaded = false;
-  // construcotrın amacı componentin instanceını bellekte oluşturmaktır. bir datayı initialize etmekten başka hiç birşey yapılmamlıdır.
-  constructor(private productService:ProductService) { } 
-  // C#da Autofac , IoC kullandığımız gibi burada injection hazır olarak geliyor. Burada verilen dğeişken sanki classın içerisinde tanımlanmış bir dğeişken gibidir. bu class içerisinde heryerden erişilebilir.
+  //! component'in html tarafında burada oluşturmuş olduğumuz her bir değişkene direk adını vererek ulaşabiliriz.
+  products:Product[] = []; //products: Product tipinde array, bunu array olarak initialize ediyoruz.
+  dataLoaded = false; 
 
-  // Component ilk kez açıldığında çalışan metodumuzdur.
-  // this -> bir fonksiyonun dışındaki bir şeye ulaşmak istediğinde typescripte this yazıyoruz.
+  //! constructorın amacı: componentin instanceını bellekte oluşturmaktır. Bir datayı initialize etmekten başka hiç birşey yapılmamlıdır.
+  //* C#'da external olarak Autofac, IoC kullandığımız gibi burada injection hazır olarak geliyor. Burada verilen değişken sanki classın içerisinde tanımlanmış bir değişken gibidir. Bu değişkene class içerisinde her yerden erişilebilir.
+  constructor(private productService:ProductService) { } 
+  
+  //! ngOnInit : Component ilk kez açıldığında/çağırıldığında çalışan metodumuzdur.
+  //* this -> bir fonksiyonun dışındaki bir şeye ulaşmak istediğinde typescripte this yazıyoruz.
   ngOnInit(): void {
     this.getProducts();
   }

@@ -17,19 +17,18 @@ export class ProductComponent implements OnInit {
 
   //! constructorın amacı: componentin instanceını bellekte oluşturmaktır. Bir datayı initialize etmekten başka hiç birşey yapılmamalıdır.
   //* C#'da external olarak Autofac, IoC kullandığımız gibi burada injection hazır olarak geliyor. Burada verilen değişken sanki classın içerisinde tanımlanmış bir değişken gibidir. Bu değişkene class içerisinde her yerden erişilebilir.
-  //! ActivatedRoute : angulara özel built-in bir servistir. Aktifletirilmiş route/mevcut route yani Url adresine erişmemizi sağlar.
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute  //! ActivatedRoute : angulara özel built-in bir servistir. Aktifletirilmiş route/mevcut route yani Url adresine erişmemizi sağlar.
   ) {}
 
   //! ngOnInit : Component ilk kez açıldığında/çağırıldığında çalışan metodumuzdur.
   //* this -> bir fonksiyonun dışındaki bir şeye ulaşmak istendiğinde typescriptte this kullanılıyor.
   ngOnInit(): void {
-    // activatedRoute.params : observable params döndürür. Observable türünde olanlara subscribe olmak zorundayız. Subscribe olarak, observable'ın içerisine erişebiliyoruz.
-    // params : parametreler
+    //! activatedRoute.params : observable params döndürür. Observable türünde olanlara subscribe olmak zorundayız. Subscribe olarak, observable'ın içerisine erişebiliyoruz.
+    //* params : parametreler
     this.activatedRoute.params.subscribe((params) => {
-      // params içerisinde categoryId diye bişey var mı? categoryId'nin yazımı app.routing.module.ts içerisindeki pathte verilen şekliyle olmak zorunda! C# dictionary gibi çalışıyor.
+      //* params içerisinde categoryId diye bişey var mı? categoryId'nin yazımı app.routing.module.ts içerisindeki pathte verilen şekliyle olmak zorunda! C# dictionary gibi çalışıyor.
       if (params['categoryId']) {
         this.getProductsByCategory(params['categoryId']);
       } else {
@@ -40,7 +39,8 @@ export class ProductComponent implements OnInit {
     this.getProducts();
   }
 
-  //* Her iş için ayrı metot oluşturuyoruz. Gerekli olanları ngOnInit içeriside çağırıyoruz.
+  //! Her iş için ayrı metot oluşturuyoruz. Gerekli olanları ngOnInit içeriside çağırıyoruz.
+  //* Yazılan service ile ilgili component bazlı kurallar var ise, subscribe component tarafına geçirilir ama yoksa subscribe'i direk service yazıp hiç observable ile uğraşmadan buraya geçiş yapılabilir. Ama genellikle bu tip component bazlı kurallar olduğu için subscribe işlemleri burada halledilir.
   getProducts() {
     //console.log("Api request başladı. 1.");
     this.productService.getProducts().subscribe((response) => {

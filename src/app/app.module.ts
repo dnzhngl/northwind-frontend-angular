@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http'; //! HttpClientModule istekleri yapmamıza yarayan modul! Bir Apiye istekte bulunablilmek için, uygulamamızın modulleri arasına bunu eklemeliyiz..
+import { HttpClientModule } from '@angular/common/http'; //! HttpClientModule istekleri yapmamıza yarayan modul! Bir Apiye istekte bulunabilmek için, uygulamamızın modulleri arasına bunu eklemeliyiz..
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';

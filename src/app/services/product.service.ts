@@ -20,6 +20,7 @@ export class ProductService {
 
   //* Gelen datayı product tipinde çalışan list response modele map eder.
   //* Observable : gelen datanın izlenebilir olduğunu belirtir. Yani bu dataya subscribe olana kadar çalışmaz, üzerinde her türlü işlem yapılabilir. Observable'lar birbirinden farklı veri tipinde değeri taşıyabilirler.
+  //* Dönüş tipi Observable, veri tipi Product ile çalışacak olan ListResponseModel.
   getProducts(): Observable<ListResponseModel<Product>> {
     //! Bu metodun sorgu atacağı yeni url adresi
     let newPath = this.apiUrl + "products/getall";

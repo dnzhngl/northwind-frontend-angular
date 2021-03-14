@@ -1,8 +1,8 @@
-
+import { ListResponseModel } from './../models/listResponseModel';
 import { HttpClient} from '@angular/common/http';  //! HtmlClient : vasıtasıyla bir backende istekte bulunabiliyoruz, backendteki dataya ulaşabiliyoruz. React'ta karşılığı axios, fetch vb.
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductResponseModel } from '../models/productResponseModel';
+import { Product } from '../models/products';
 
 //! Classın injectable olduğunu belirtir.
 //! root -> globalde tanımlandığını gösterir. İstenilen her yere inject edilebilir.
@@ -11,16 +11,27 @@ import { ProductResponseModel } from '../models/productResponseModel';
 })
 export class ProductService {
 
-  //! Sorgu atacağımız Url Adresi
-  apiUrl="https://localhost:44311/api/products/getall";
+  //! Sorgu atacağımız genel Url Adresi
+  apiUrl="https://localhost:44311/api/";
+  
   //! Api sorgularımızı HttpClient vasıtasıyla atıyoruz. Service içerisinde kullanabilmek için constructor'a inject ediyoruz.
+  //* private olarak tanımlamazsak, product service'e erişen birisi http client'ada erişim sağlar. private, ilgili nesnenin sadece burada geçerli olduğunu belirtir.
   constructor(private httpClient:HttpClient) { }
 
-  //* gelen datayı product response modele map eder.
+  //* Gelen datayı product tipinde çalışan list response modele map eder.
   //* Observable : gelen datanın izlenebilir olduğunu belirtir. Yani bu dataya subscribe olana kadar çalışmaz, üzerinde her türlü işlem yapılabilir. Observable'lar birbirinden farklı veri tipinde değeri taşıyabilirler.
-  getProducts(): Observable<ProductResponseModel> {
-    
+  getProducts(): Observable<ListResponseModel<Product>> {
+    //! Bu metodun sorgu atacağı yeni url adresi
+    let newPath = this.apiUrl + "products/getall";
+
     //* httpClient.get() : HttpClient modulunun sağlamış olduğu get metodu, klasik api sorguları atabilmemizi sğalar. (get, post, put, delete vb.) Postman sorguları gibi.
-    return this.httpClient.get<ProductResponseModel>(this.apiUrl); 
+    //* get'e generic olarak vermiş olduğumuz tipe/model'e sorgudan dönen datayı mapler.
+    return this.httpClient.get<ListResponseModel<Product>>(newPath); 
   } 
+
+  getProductsByCategory(categoryId:number):Observable<ListResponseModel<Product>>{
+    let newPath = this.apiUrl + "products/getallbycategory?categoryId=" + categoryId;
+    return this.httpClient.get<ListResponseModel<Product>>(newPath);
+  }
+
 }

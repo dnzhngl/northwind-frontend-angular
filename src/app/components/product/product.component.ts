@@ -1,7 +1,9 @@
+import { CartService } from './../../services/cart.service';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/products';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product', //! Componenti html tag'i olarak çağırıkan kullanacağımız isim.
@@ -14,12 +16,15 @@ export class ProductComponent implements OnInit {
   //! component'in html tarafında burada oluşturmuş olduğumuz her bir değişkene direk adını vererek ulaşabiliriz.
   products: Product[] = []; //products: Product tipinde array, bunu array olarak initialize ediyoruz.
   dataLoaded = false;
+  filterText="";
 
   //! constructorın amacı: componentin instanceını bellekte oluşturmaktır. Bir datayı initialize etmekten başka hiç birşey yapılmamalıdır.
   //* C#'da external olarak Autofac, IoC kullandığımız gibi burada injection hazır olarak geliyor. Burada verilen değişken sanki classın içerisinde tanımlanmış bir değişken gibidir. Bu değişkene class içerisinde her yerden erişilebilir.
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute  //! ActivatedRoute : angulara özel built-in bir servistir. Aktifletirilmiş route/mevcut route yani Url adresine erişmemizi sağlar.
+    private activatedRoute: ActivatedRoute,  //! ActivatedRoute : angulara özel built-in bir servistir. Aktifletirilmiş route/mevcut route yani Url adresine erişmemizi sağlar.
+    private toastrService:ToastrService,
+    private cartService:CartService
   ) {}
 
   //! ngOnInit : Component ilk kez açıldığında/çağırıldığında çalışan metodumuzdur.
@@ -59,4 +64,11 @@ export class ProductComponent implements OnInit {
         this.products = response.data;
       });
   }
+
+  addToCart(product:Product){
+    this.cartService.addToCart(product);
+    this.toastrService.success("Added to cart.", product.productName)
+    console.log(product)
+  }
 }
+

@@ -1,0 +1,45 @@
+<div class="content mt-3">
+    <div class="col-md-8 col-12">
+
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">New Product</h5>
+            </div>
+            <div class="card-body">
+                <!--*[formGroup]="productAddFom" -> component.ts içerisindeki productAddForm'una map eder.-->
+                <form [formGroup]="productAddForm">
+                    <div class="mb-3">
+                        <!--! formControlName="productName" -> Angular input ile olan ilişkilendirmeyi formControlName özelliği ile yapar. Bu özelliğe girilen değer ile component içerisinde tanımlanan değerin isimleri aynı olmalı.-->
+                        <label for="productName" class="form-label">Product Name</label>
+                        <input type="text" formControlName="productName" class="form-control" id="productName"
+                            placeholder="Product Name" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="categoryId" class="form-label">Category</label>
+                        <input type="number" formControlName="categoryId" class="form-control" id="categoryId"
+                            placeholder="Category" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitPrice" class="form-label">Unit Price</label>
+                        <input type="number" formControlName="unitPrice" class="form-control" id="unitPrice"
+                            placeholder="Unit Price" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="unitsInStock" class="form-label">Units in Stock</label>
+                        <input type="number" formControlName="unitsInStock" class="form-control" id="unitsInStock"
+                            placeholder="Units in Stock" />
+                    </div>
+
+                </form>
+            </div>
+            <div class="card-footer">
+
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary" (click)="add()">Add</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

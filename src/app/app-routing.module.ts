@@ -1,3 +1,4 @@
+import { ProductAddComponent } from './components/product-add/product-add.component';
 //! Routing configurations - route ayarları burada yapılır.
 //* Url'e girilen adrese karşılık neresi getirilsin/ hangi component çalışsın.
 
@@ -10,7 +11,8 @@ import { ProductComponent } from './components/product/product.component';
 const routes: Routes = [
   {path:"",pathMatch:"full", component:ProductComponent}, // Ana sayfada, router outlet alanında, ProductComponent'i gösterir. pathMatch:"full" -> girilen adres burada belirtilen ile tamı tamına eşleşmeli.
   { path:'products', component:ProductComponent }, //Url'de products var ise ProductComponent'in htmlini ilgili data ile birlikte döndürür.
-  { path:'products/category/:categoryId', component:ProductComponent } // route path'e parametre verilecekse :parametreAdi şeklinde yazılır. Verilen parametrenin yazım şekli önemlidir.
+  { path:'products/category/:categoryId', component:ProductComponent }, // route path'e parametre verilecekse :parametreAdi şeklinde yazılır. Verilen parametrenin yazım şekli önemlidir.
+  {path:"products/add", component:ProductAddComponent}
 ];
 
 @NgModule({

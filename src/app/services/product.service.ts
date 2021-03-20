@@ -3,6 +3,7 @@ import { HttpClient} from '@angular/common/http';  //! HtmlClient : vasıtasıyl
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/products';
+import { ResponseModel } from '../models/responseModel';
 
 //! Classın injectable olduğunu belirtir.
 //! root -> globalde tanımlandığını gösterir. İstenilen her yere inject edilebilir.
@@ -35,4 +36,7 @@ export class ProductService {
     return this.httpClient.get<ListResponseModel<Product>>(newPath);
   }
 
+  add(product:Product):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl + "products/add", product); //! Url adresine post edilecek olan değer, post() metodu içerisinde ikinci parametre olarak verilir.
+  }
 }

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/products';
 import { ResponseModel } from '../models/responseModel';
+import { environment} from '../../environments/environment';
 
 //! Classın injectable olduğunu belirtir.
 //! root -> globalde tanımlandığını gösterir. İstenilen her yere inject edilebilir.
@@ -13,7 +14,8 @@ import { ResponseModel } from '../models/responseModel';
 export class ProductService {
 
   //! Sorgu atacağımız genel Url Adresi
-  apiUrl="https://localhost:44311/api/";
+  apiUrl = environment.api_url + "products/"
+  // apiUrl="https://localhost:44311/api/";
   
   //! Api sorgularımızı HttpClient vasıtasıyla atıyoruz. Service içerisinde kullanabilmek için constructor'a inject ediyoruz.
   //* private olarak tanımlamazsak, product service'e erişen birisi http client'ada erişim sağlar. private, ilgili nesnenin sadece burada geçerli olduğunu belirtir.
@@ -24,7 +26,7 @@ export class ProductService {
   //* Dönüş tipi Observable, veri tipi Product ile çalışacak olan ListResponseModel.
   getProducts(): Observable<ListResponseModel<Product>> {
     //! Bu metodun sorgu atacağı yeni url adresi
-    let newPath = this.apiUrl + "products/getall";
+    let newPath = this.apiUrl + "getall";
 
     //* httpClient.get() : HttpClient modulunun sağlamış olduğu get metodu, klasik api sorguları atabilmemizi sğalar. (get, post, put, delete vb.) Postman sorguları gibi.
     //* get'e generic olarak vermiş olduğumuz tipe/model'e sorgudan dönen datayı mapler.
@@ -32,11 +34,11 @@ export class ProductService {
   } 
 
   getProductsByCategory(categoryId:number):Observable<ListResponseModel<Product>>{
-    let newPath = this.apiUrl + "products/getallbycategory?categoryId=" + categoryId;
+    let newPath = this.apiUrl + "getallbycategory?categoryId=" + categoryId;
     return this.httpClient.get<ListResponseModel<Product>>(newPath);
   }
 
   add(product:Product):Observable<ResponseModel>{
-    return this.httpClient.post<ResponseModel>(this.apiUrl + "products/add", product); //! Url adresine post edilecek olan değer, post() metodu içerisinde ikinci parametre olarak verilir.
+    return this.httpClient.post<ResponseModel>(this.apiUrl + "add", product); //! Url adresine post edilecek olan değer, post() metodu içerisinde ikinci parametre olarak verilir.
   }
 }
